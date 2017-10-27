@@ -12,39 +12,91 @@
 
 </ion-header>
 
-<ion-content text-center>
+<ion-content padding text-center>
   <div class="profile">
       <h2>My Profile</h2>
 
       <form [formGroup]="form" (ngSubmit)="uploadProfile()">
-        <ion-list>
-            <ion-item margin-bottom>
-               <ion-input placeholder="First Name"
-                  type="text"
-                  formControlName="firstName"></ion-input>
-            </ion-item>
+        <ion-item-group>
+          <ion-list>
+            <ion-list-header>
+              About Me
+            </ion-list-header>
 
-            <ion-item margin-bottom>
-               <ion-input placeholder="Last Name"
-                  type="text"
-                  formControlName="lastName"></ion-input>
-            </ion-item>
+              <ion-item margin-bottom>
+                 <ion-input placeholder="First Name"
+                    type="text"
+                    formControlName="firstName"></ion-input>
+              </ion-item>
 
-            <ion-item margin-bottom>
-               <ion-input placeholder="Birthdate"
-                  type="text"
-                  formControlName="birthdate"></ion-input>
-            </ion-item>
+              <ion-item margin-bottom>
+                 <ion-input placeholder="Last Name"
+                    type="text"
+                    formControlName="lastName"></ion-input>
+              </ion-item>
 
-            <ion-item margin-bottom>
-              <ion-select formControlName="gender">
-                <ion-option value="1">Male</ion-option>
-                <ion-option value="2">Female</ion-option>
-              </ion-select>
-            </ion-item>
+              <ion-item margin-bottom>
+                <ion-label>Birthday</ion-label>
+                <ion-select formControlName="month" interface="action-sheet">
+                  <ion-option value="1">January</ion-option>
+                  <ion-option value="2">February</ion-option>
+                  <ion-option value="3">March</ion-option>
+                  <ion-option value="4">April</ion-option>
+                  <ion-option value="5">May</ion-option>
+                  <ion-option value="6">June</ion-option>
+                  <ion-option value="7">July</ion-option>
+                  <ion-option value="8">August</ion-option>
+                  <ion-option value="9">September</ion-option>
+                  <ion-option value="10">October</ion-option>
+                  <ion-option value="11">November</ion-option>
+                  <ion-option value="12">December</ion-option>
+                </ion-select>
+                <ion-select interface="action-sheet">
+                  <ion-option value="1">1</ion-option>
+                  <ion-option value="2">2</ion-option>
+                  <ion-option value="3">3</ion-option>
+                  <ion-option value="4">4</ion-option>
+                  <ion-option value="5">5</ion-option>
+                  <ion-option value="6">6</ion-option>
+                  <ion-option value="7">7</ion-option>
+                  <ion-option value="8">8</ion-option>
+                  <ion-option value="9">9</ion-option>
+                  <ion-option value="10">10</ion-option>
+                  <ion-option value="11">11</ion-option>
+                  <ion-option value="12">12</ion-option>
+                </ion-select>
 
-            <button ion-button block [disabled]="!form.valid">Create Profile</button>
-         </ion-list>
+              </ion-item>
+
+              <ion-item margin-bottom>
+                <ion-label>Gender</ion-label>
+                <ion-select formControlName="gender" interface="popover">
+                  <ion-option value="f">Female</ion-option>
+                  <ion-option value="m">Male</ion-option>
+                </ion-select>
+              </ion-item>
+
+
+           </ion-list>
+         </ion-item-group>
+         <ion-item-group>
+           <ion-list>
+             <ion-list-header>
+               Point of Contact
+             </ion-list-header>
+             <ion-item margin-bottom>
+                <ion-input placeholder="Name" type="text"></ion-input>
+             </ion-item>
+             <ion-item margin-bottom>
+                <ion-input placeholder="Relationship" type="text"></ion-input>
+             </ion-item>
+             <ion-item margin-bottom>
+                <ion-input placeholder="Contact Method" type="text"></ion-input>
+             </ion-item>
+           </ion-list>
+         </ion-item-group>
+
+           <button ion-button block [disabled]="!form.valid">Create Profile</button>
       </form>
 
    </div>

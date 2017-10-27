@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import {
-   FormBuilder,
-   FormGroup,
-   Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { HomePage } from '../../pages/home/home';
 import { SignupPage } from '../../pages/signup/signup';
-import { ProfilePage } from '../../pages/profile/profile';
 import { AuthProvider } from '../../providers/auth/auth';
 
 import * as firebase from 'firebase';
@@ -55,7 +51,7 @@ export class LoginPage {
         ref.child('users/' + uid);
         var userRef = ref.child('users/' + uid);
         console.log(userRef);
-         this.navCtrl.setRoot(HomePage);
+        this.navCtrl.setRoot(HomePage);
       })
       .catch((error : any) =>
       {
@@ -64,7 +60,7 @@ export class LoginPage {
    }
 
    signup(): void {
-     this.navCtrl.setRoot(ProfilePage);
+     this.navCtrl.setRoot(SignupPage);
    }
 
 

@@ -23,13 +23,13 @@ export class ProfilePage {
 
    constructor(public navCtrl: NavController, private _FB : FormBuilder, private _AUTH: AuthProvider)
    {
-
       // Define FormGroup object using Angular's FormBuilder
       this.form = this._FB.group({
          'firstName': ['', Validators.required],
          'lastName': ['', Validators.required],
          'birthdate': ['', Validators.required],
          'gender': ['', Validators.required],
+         'month': ['', Validators.required],
       });
    }
    uploadProfile(): void
@@ -37,7 +37,8 @@ export class ProfilePage {
       let firstName: any= this.form.controls['firstName'].value,
           lastName: any= this.form.controls['lastName'].value,
           birthdate: any= this.form.controls['birthdate'].value,
-          gender: any= this.form.controls['gender'].value;
+          gender: any= this.form.controls['gender'].value,
+          month: any= this.form.controls['month'].value;
 
     }
 

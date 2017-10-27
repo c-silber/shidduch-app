@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { HomePage } from '../../pages/home/home';
+import { ProfilePage } from '../../pages/profile/profile';
 import { LoginPage } from '../../pages/login/login';
 import { AuthProvider } from '../../providers/auth/auth';
 
@@ -30,8 +30,6 @@ export class SignupPage {
          'password'     : ['', Validators.required]
       });
    }
-
-
    /**
     * Log in using the loginWithEmailAndPassword method
     * from the AuthProvider service (supplying the email
@@ -60,7 +58,7 @@ export class SignupPage {
           resume: ""
         });
 
-         this.navCtrl.setRoot(HomePage);
+         this.navCtrl.setRoot(ProfilePage);
       })
       .catch((error : any) =>
       {
