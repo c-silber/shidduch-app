@@ -37,35 +37,7 @@
 
               <ion-item margin-bottom>
                 <ion-label>Birthday</ion-label>
-                <ion-select formControlName="month" interface="action-sheet">
-                  <ion-option value="1">January</ion-option>
-                  <ion-option value="2">February</ion-option>
-                  <ion-option value="3">March</ion-option>
-                  <ion-option value="4">April</ion-option>
-                  <ion-option value="5">May</ion-option>
-                  <ion-option value="6">June</ion-option>
-                  <ion-option value="7">July</ion-option>
-                  <ion-option value="8">August</ion-option>
-                  <ion-option value="9">September</ion-option>
-                  <ion-option value="10">October</ion-option>
-                  <ion-option value="11">November</ion-option>
-                  <ion-option value="12">December</ion-option>
-                </ion-select>
-                <ion-select interface="action-sheet">
-                  <ion-option value="1">1</ion-option>
-                  <ion-option value="2">2</ion-option>
-                  <ion-option value="3">3</ion-option>
-                  <ion-option value="4">4</ion-option>
-                  <ion-option value="5">5</ion-option>
-                  <ion-option value="6">6</ion-option>
-                  <ion-option value="7">7</ion-option>
-                  <ion-option value="8">8</ion-option>
-                  <ion-option value="9">9</ion-option>
-                  <ion-option value="10">10</ion-option>
-                  <ion-option value="11">11</ion-option>
-                  <ion-option value="12">12</ion-option>
-                </ion-select>
-
+                <ion-datetime displayFormat="MM DD YYYY" pickerFormat="MM DD YYYY"></ion-datetime>
               </ion-item>
 
               <ion-item margin-bottom>
@@ -75,7 +47,6 @@
                   <ion-option value="m">Male</ion-option>
                 </ion-select>
               </ion-item>
-
 
            </ion-list>
          </ion-item-group>
