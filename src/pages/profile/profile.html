@@ -1,0 +1,52 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content text-center>
+  <div class="profile">
+      <h2>My Profile</h2>
+
+      <form [formGroup]="form" (ngSubmit)="uploadProfile()">
+        <ion-list>
+            <ion-item margin-bottom>
+               <ion-input placeholder="First Name"
+                  type="text"
+                  formControlName="firstName"></ion-input>
+            </ion-item>
+
+            <ion-item margin-bottom>
+               <ion-input placeholder="Last Name"
+                  type="text"
+                  formControlName="lastName"></ion-input>
+            </ion-item>
+
+            <ion-item margin-bottom>
+               <ion-input placeholder="Birthdate"
+                  type="text"
+                  formControlName="birthdate"></ion-input>
+            </ion-item>
+
+            <ion-item margin-bottom>
+              <ion-select formControlName="gender">
+                <ion-option value="1">Male</ion-option>
+                <ion-option value="2">Female</ion-option>
+              </ion-select>
+            </ion-item>
+
+            <button ion-button block [disabled]="!form.valid">Create Profile</button>
+         </ion-list>
+      </form>
+
+   </div>
+
+</ion-content>

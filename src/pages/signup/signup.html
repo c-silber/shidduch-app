@@ -1,0 +1,41 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Shidduch Line</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content text-center>
+  <div class="signup">
+      <h2>Sign Up</h2>
+
+      <form [formGroup]="form" (ngSubmit)="signup()">
+        <ion-list>
+            <ion-item margin-bottom>
+               <ion-input placeholder="Email"
+                  type="email"
+                  formControlName="email"></ion-input>
+            </ion-item>
+
+            <ion-item margin-bottom>
+               <ion-input placeholder="Password"
+                  type="password"
+                  formControlName="password"></ion-input>
+            </ion-item>
+
+            <button ion-button block [disabled]="!form.valid">Sign Up</button>
+
+            <p>Already have an account? <a a (click)="login()">Click here</a> to log in</p>
+         </ion-list>
+      </form>
+
+   </div>
+
+</ion-content>

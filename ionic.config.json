@@ -1,0 +1,8 @@
+{
+  "name": "shidduch-line",
+  "app_id": "13df5a8b",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
