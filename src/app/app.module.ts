@@ -15,6 +15,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { DatePicker } from '@ionic-native/date-picker';
 import { AuthProvider } from '../providers/auth/auth';
 
+import { File } from '@ionic-native/file';
+import { Transfer } from '@ionic-native/transfer';
+import { FilePath } from '@ionic-native/file-path';
+import { Camera } from '@ionic-native/camera';
+
 import * as firebase from 'firebase';
 import { environment } from '../environment/environment';
 
@@ -47,6 +52,10 @@ firebase.initializeApp(environment.firebase);
     StatusBar,
     SplashScreen,
     DatePicker,
+    File,
+    Transfer,
+    Camera,
+    FilePath,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider
   ]

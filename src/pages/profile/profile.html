@@ -19,9 +19,7 @@
       <form [formGroup]="form" (ngSubmit)="uploadProfile()">
         <ion-item-group>
           <ion-list>
-            <ion-list-header>
-              About Me
-            </ion-list-header>
+            <ion-item-divider color="light">About Me</ion-item-divider>
 
               <ion-item margin-bottom>
                  <ion-input placeholder="First Name"
@@ -37,7 +35,7 @@
 
               <ion-item margin-bottom>
                 <ion-label>Birthday</ion-label>
-                <ion-datetime displayFormat="MM DD YYYY" pickerFormat="MM DD YYYY"></ion-datetime>
+                <ion-datetime displayFormat="MMM DD, YYYY" pickerFormat="MMM DD YYYY"></ion-datetime>
               </ion-item>
 
               <ion-item margin-bottom>
@@ -50,11 +48,26 @@
 
            </ion-list>
          </ion-item-group>
+
          <ion-item-group>
            <ion-list>
-             <ion-list-header>
-               Point of Contact
-             </ion-list-header>
+             <ion-item-divider color="light">Resume / Picture</ion-item-divider>
+             <ion-item margin-bottom>
+               <button ion-button icon-left (click)="uploadImage()" [disabled]="lastImage === null">
+                 <ion-icon name="cloud-upload"></ion-icon>Upload Resume
+               </button>
+             </ion-item>
+             <ion-item margin-bottom>
+               <button ion-button icon-left (click)="uploadImage()" [disabled]="lastImage === null">
+                 <ion-icon name="cloud-upload"></ion-icon>Upload Picture
+               </button>
+             </ion-item>
+           </ion-list>
+         </ion-item-group>
+
+         <ion-item-group>
+           <ion-list>
+             <ion-item-divider color="light">Point of Contact</ion-item-divider>
              <ion-item margin-bottom>
                 <ion-input placeholder="Name" type="text"></ion-input>
              </ion-item>
@@ -67,7 +80,7 @@
            </ion-list>
          </ion-item-group>
 
-           <button ion-button block [disabled]="!form.valid">Create Profile</button>
+        <button ion-button block="!form.valid">Create Profile</button>
       </form>
 
    </div>

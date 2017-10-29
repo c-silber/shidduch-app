@@ -3,7 +3,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { HomePage } from '../../pages/home/home';
-import { SignupPage } from '../../pages/signup/signup';
+import { ProfilePage } from '../../pages/profile/profile';
 import { AuthProvider } from '../../providers/auth/auth';
 
 import * as firebase from 'firebase';
@@ -60,7 +60,7 @@ export class LoginPage {
    }
 
    signup(): void {
-     this.navCtrl.setRoot(SignupPage);
+     this.navCtrl.setRoot(ProfilePage);
    }
 
 
