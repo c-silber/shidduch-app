@@ -118,4 +118,30 @@ export class ProfilePage {
     }
   }
 
+  // Create a new name for the image
+private createFileName() {
+  var d = new Date(),
+  n = d.getTime(),
+  newFileName =  n + ".jpg";
+  return newFileName;
+}
+
+// Copy the image to a local folder
+private copyFileToLocalDir(namePath, currentName, newFileName) {
+  this.file.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(success => {
+    this.lastImage = newFileName;
+  }, error => {
+    this.presentToast('Error while storing file.');
+  });
+}
+
+private presentToast(text) {
+  let toast = this.toastCtrl.create({
+    message: text,
+    duration: 3000,
+    position: 'top'
+  });
+  toast.present();
+}
+
 }
