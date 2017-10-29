@@ -53,8 +53,8 @@
            <ion-list>
              <ion-item-divider color="light">Resume / Picture</ion-item-divider>
              <ion-item margin-bottom>
-               <button ion-button icon-left (click)="uploadImage()" [disabled]="lastImage === null">
-                 <ion-icon name="cloud-upload"></ion-icon>Upload Resume
+               <button ion-button icon-left (click)="presentActionSheet()">
+                 <ion-icon name="camera"></ion-icon>Select Image
                </button>
              </ion-item>
              <ion-item margin-bottom>

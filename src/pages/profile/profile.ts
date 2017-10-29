@@ -21,6 +21,9 @@ declare var cordova: any;
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
+   lastImage: string = null;
+   loading: Loading;
+
    /**
     * Create reference for FormGroup object
     */
