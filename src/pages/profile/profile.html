@@ -35,7 +35,7 @@
 
               <ion-item margin-bottom>
                 <ion-label>Birthday</ion-label>
-                <ion-datetime displayFormat="MMM DD, YYYY" pickerFormat="MMM DD YYYY"></ion-datetime>
+                <ion-datetime displayFormat="MMM DD, YYYY" pickerFormat="MMM DD YYYY" formControlName="birthdate"></ion-datetime>
               </ion-item>
 
               <ion-item margin-bottom>
@@ -53,27 +53,16 @@
            <ion-list>
              <ion-item-divider color="light">Resume / Picture</ion-item-divider>
              <ion-item margin-bottom>
-                <ion-row>
-               <ion-col width-50>
-               <button ion-button color="danger" type="button" full round large (click)="takePhoto()">
-                     <ion-icon name="md-camera"></ion-icon>
-                 </button>
-               </ion-col>
-               <ion-col width-50>
-                 <button ion-button color="secondary" type="button" full round large (click)="selectPhoto()">
-                    <ion-icon name="md-image"></ion-icon>
-                  </button>
-                </ion-col>
-              </ion-row>
-             </ion-item>
+
+             <button ion-button icon-left (click)="presentActionSheet()">
+               <ion-icon name="camera"></ion-icon>Select Image
+             </button>
+
+            </ion-item>
              <ion-item>
               <img class="img-responsive" src="{{ myPhotoURL }}" />
             </ion-item>
-             <ion-item margin-bottom>
-               <button ion-button icon-left (click)="uploadImage()" [disabled]="lastImage === null">
-                 <ion-icon name="cloud-upload"></ion-icon>Upload Picture
-               </button>
-             </ion-item>
+
            </ion-list>
          </ion-item-group>
 
@@ -81,13 +70,13 @@
            <ion-list>
              <ion-item-divider color="light">Point of Contact</ion-item-divider>
              <ion-item margin-bottom>
-                <ion-input placeholder="Name" type="text"></ion-input>
+                <ion-input formControlName="pocName" placeholder="Name" type="text"></ion-input>
              </ion-item>
              <ion-item margin-bottom>
-                <ion-input placeholder="Relationship" type="text"></ion-input>
+                <ion-input formControlName="pocRelation" placeholder="Relationship" type="text"></ion-input>
              </ion-item>
              <ion-item margin-bottom>
-                <ion-input placeholder="Contact Method" type="text"></ion-input>
+                <ion-input formControlName="pocContact" placeholder="Contact Method" type="text"></ion-input>
              </ion-item>
            </ion-list>
          </ion-item-group>

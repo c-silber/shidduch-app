@@ -11,7 +11,6 @@ export class AuthProvider {
 
    public user: Observable<any>
 
-
    constructor(public http: Http)
    {
       firebase.auth().onAuthStateChanged((user) =>
@@ -19,6 +18,7 @@ export class AuthProvider {
         if (user)
         {
           // User is signed in.
+          console.log(user);
           console.log('User is signed in');
         }
         else
@@ -27,6 +27,12 @@ export class AuthProvider {
           console.log('User is NOT signed in');
         }
       });
+   }
+
+   addUserProfile(firstName: string, lastName: string, gender: string, birthdate: string,
+   image: string, pocName: string, pocRelation: string, pocContact): void
+   {
+     console.log(this.user);
    }
 
    /**

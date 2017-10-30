@@ -1,19 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ActionSheetController, ToastController, Platform, LoadingController, Loading } from 'ionic-angular';
+import { IonicPage, NavController, ActionSheetController, ToastController, LoadingController, Loading } from 'ionic-angular';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { HomePage } from '../../pages/home/home';
-import { LoginPage } from '../../pages/login/login';
 import { AuthProvider } from '../../providers/auth/auth';
 
-import { File } from '@ionic-native/file';
-import { Transfer, TransferObject } from '@ionic-native/transfer';
-import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
 
 import * as firebase from 'firebase';
-declare var cordova: any;
 
 @IonicPage()
 @Component({
@@ -24,13 +19,17 @@ export class ProfilePage {
    public myPhotosRef: any;
    public myPhoto: any;
    public myPhotoURL: any;
+   lastImage: string = null;
+   loading: Loading;
 
    /**
     * Create reference for FormGroup object
     */
    public form: FormGroup;
 
-   constructor(public navCtrl: NavController, private _FB : FormBuilder, private _AUTH: AuthProvider, private camera : Camera)
+   constructor(public navCtrl: NavController, private _FB : FormBuilder, private _AUTH: AuthProvider,
+     public actionSheetCtrl: ActionSheetController,
+     private camera : Camera, public toastCtrl: ToastController, public loadingCtrl: LoadingController)
    {
      // ref to photos storage location
      this.myPhotosRef = firebase.storage().ref('/Photos/');
@@ -40,8 +39,10 @@ export class ProfilePage {
          'lastName': ['', Validators.required],
          'birthdate': ['', Validators.required],
          'gender': ['', Validators.required],
-         'month': ['', Validators.required]
-
+         'month': ['', Validators.required],
+         'pocName': ['', Validators.required],
+         'pocRelation': ['', Validators.required],
+         'pocContact': ['', Validators.required]
       });
    }
    uploadProfile(): void
@@ -50,9 +51,41 @@ export class ProfilePage {
           lastName: any= this.form.controls['lastName'].value,
           birthdate: any= this.form.controls['birthdate'].value,
           gender: any= this.form.controls['gender'].value,
-          month: any= this.form.controls['month'].value;
+          photo: any= this.myPhotoURL,
+          pocName: any= this.form.controls['pocName'].value,
+          pocRelation: any= this.form.controls['pocRelation'].value,
+          pocContact: any= this.form.controls['pocContact'].value;
 
+      this._AUTH.addUserProfile(firstName, lastName, birthdate, gender, photo, pocName, pocRelation, pocContact);
+
+      this.navCtrl.setRoot(HomePage);
     }
+
+    public presentActionSheet() {
+        let actionSheet = this.actionSheetCtrl.create({
+          title: 'Select Image Source',
+          buttons: [
+            {
+              text: 'Load from Library',
+              handler: () => {
+                this.selectPhoto();
+              }
+            },
+            {
+              text: 'Use Camera',
+              handler: () => {
+                this.takePhoto();
+              }
+            },
+            {
+              text: 'Cancel',
+              role: 'cancel'
+            }
+          ]
+        });
+        actionSheet.present();
+      }
+
     selectPhoto(): void {
         this.camera.getPicture({
           sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
@@ -60,8 +93,13 @@ export class ProfilePage {
           quality: 100,
           encodingType: this.camera.EncodingType.PNG,
         }).then(imageData => {
+          this.loading = this.loadingCtrl.create({
+            content: 'Uploading...',
+          });
+          this.loading.present();
           this.myPhoto = imageData;
           this.uploadPhoto();
+          this.loading.dismissAll();
         }, error => {
           console.log("ERROR -> " + JSON.stringify(error));
         });
@@ -75,17 +113,31 @@ export class ProfilePage {
           encodingType: this.camera.EncodingType.PNG,
           saveToPhotoAlbum: true
         }).then(imageData => {
+          this.loading = this.loadingCtrl.create({
+            content: 'Uploading...',
+          });
+          this.loading.present();
           this.myPhoto = imageData;
           this.uploadPhoto();
         }, error => {
-          console.log("ERROR -> " + JSON.stringify(error));
+          this.presentToast("ERROR -> " + JSON.stringify(error));
         });
       }
 
+      private presentToast(text) {
+        let toast = this.toastCtrl.create({
+          message: text,
+          duration: 3000,
+          position: 'top'
+        });
+        toast.present();
+      }
+
       private uploadPhoto(): void {
-          this.myPhotosRef.child(this.generateUUID()).child('myPhoto.png')
+         this.myPhotosRef.child(this.generateUUID())
             .putString(this.myPhoto, 'base64', { contentType: 'image/png' })
             .then((savedPicture) => {
+              this.loading.dismissAll();
               this.myPhotoURL = savedPicture.downloadURL;
             });
         }

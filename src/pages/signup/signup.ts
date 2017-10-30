@@ -46,21 +46,8 @@ export class SignupPage {
       this._AUTH.signupWithEmailAndPassword(email, password)
       .then((auth : any) =>
       {
-        var uid = auth.uid;
-        var ref = firebase.database().ref('/');
-        ref.child('users/' + uid);
-        var userRef = ref.child('users/' + uid);
-        userRef.set({
-          name: "Goldie",
-          gender: "Female",
-          age: 23,
-          image: "",
-          resume: ""
-        });
-
          this.navCtrl.setRoot(ProfilePage);
-      })
-      .catch((error : any) =>
+      }).catch((error : any) =>
       {
         console.log(error.message);
       });
