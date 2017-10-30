@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { HomePage } from '../../pages/home/home';
 import { ProfilePage } from '../../pages/profile/profile';
+import { SignupPage } from '../../pages/signup/signup';
 import { AuthProvider } from '../../providers/auth/auth';
 
 import * as firebase from 'firebase';
@@ -51,16 +52,15 @@ export class LoginPage {
         ref.child('users/' + uid);
         var userRef = ref.child('users/' + uid);
         console.log(userRef);
-        this.navCtrl.setRoot(HomePage);
-      })
-      .catch((error : any) =>
+        this.navCtrl.setRoot(ProfilePage);
+      }).catch((error : any) =>
       {
         console.log(error.message);
       });
    }
 
    signup(): void {
-     this.navCtrl.setRoot(ProfilePage);
+     this.navCtrl.setRoot(SignupPage);
    }
 
 
