@@ -6,8 +6,6 @@ import { ProfilePage } from '../../pages/profile/profile';
 import { LoginPage } from '../../pages/login/login';
 import { AuthProvider } from '../../providers/auth/auth';
 
-import * as firebase from 'firebase';
-
 @IonicPage()
 @Component({
   selector: 'page-signup',
